@@ -11,13 +11,15 @@ public class GameManager : MonoBehaviour
     public BeatScroller beatScroller;
     public static GameManager instance;
 
+    [Header("Score")]
+    public int scorePerTicLongNote;
     public int scorePerNote;
     public int scorePerGoodNote;
     public int scorePerPerfectNote;
-    int score;
+    [HideInInspector]public int score;
     public TMP_Text scoreText;
 
-    [Header("multiplier")]
+    [Header("Multiplier")]
     int currentMultiplier;
     int multiplierTracker;
     public int[] multiplierThresholds;
@@ -80,6 +82,16 @@ public class GameManager : MonoBehaviour
     public void NoteMissed()
     {
         print("miss");
+
+        multiplierTracker = 0;
+        currentMultiplier = 1;
+        multiplierText.text = "X " + currentMultiplier;
+        multiplierSlider.value = multiplierTracker;
+        multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+    }
+    public void NoteMissClick()
+    {
+        print("missClick");
 
         multiplierTracker = 0;
         currentMultiplier = 1;

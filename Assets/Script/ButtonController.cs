@@ -9,6 +9,8 @@ public class ButtonController : MonoBehaviour
     public Sprite pressedImage;
 
     public KeyCode keyToPress;
+
+    [HideInInspector]public bool canBePressed;
     void Start()
     {
         image = GetComponent<SpriteRenderer>();
@@ -20,6 +22,11 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyDown(keyToPress))
         {
             image.sprite = pressedImage;
+
+            if (!canBePressed)
+            {
+                GameManager.instance.NoteMissClick();
+            }
         }
         if (Input.GetKeyUp(keyToPress))
         {

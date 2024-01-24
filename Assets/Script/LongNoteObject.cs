@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteObject : MonoBehaviour
+public class LongNoteObject : MonoBehaviour
 {
     bool canBePressed;
     public KeyCode keyToPress;
@@ -19,7 +19,7 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                if(Mathf.Abs(transform.position.y) > 0.25)
+                if (Mathf.Abs(transform.position.y) > 0.25)
                 {
                     GameManager.instance.NormalHit();
                 }
@@ -33,13 +33,23 @@ public class NoteObject : MonoBehaviour
                 }
                 myState = States.Pressed;
 
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
             }
+        }
+
+        if (Input.GetKey(keyToPress) && canBePressed)
+        {
+            GameManager.instance.score += GameManager.instance.scorePerTicLongNote;
+        }
+
+        if (Input.GetKeyUp(keyToPress) && myState == States.Pressed)
+        {
+            gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Activator")
+        if (collision.tag == "Activator")
         {
             canBePressed = true;
             collision.GetComponent<ButtonController>().canBePressed = true;
@@ -50,7 +60,7 @@ public class NoteObject : MonoBehaviour
         if (collision.tag == "Activator" && myState != States.Pressed)
         {
             collision.GetComponent<ButtonController>().canBePressed = false;
-            if(myState != States.Pressed)
+            if (myState != States.Pressed)
             {
                 canBePressed = false;
                 myState = States.Missed;
