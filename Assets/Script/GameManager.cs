@@ -1,15 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public AudioSource music;
     public bool startPlaying;
     public BeatScroller beatScroller;
+    public static GameManager instance;
+
+    public int noteScore;
+    int score;
+    public TMP_Text scoreText;
+
+    [Header("multiplier")]
+    int currentMultiplier;
+    int multiplierTracker;
+    public int[] multiplierThresholds;
+    public TMP_Text multiplierText;
+    public Slider multiplierSlider;
     void Start()
     {
-        
+        instance = this;
+        currentMultiplier = 1;
     }
 
     // Update is called once per frame
@@ -25,5 +40,35 @@ public class GameManager : MonoBehaviour
                 music.Play();
             }
         }
+    }
+
+    public void NoteHit()
+    {
+        print("hit");
+        score += noteScore * currentMultiplier;
+        scoreText.text = "Score: " + score;
+        if (currentMultiplier - 1 < multiplierThresholds.Length)
+        {
+            multiplierTracker++;
+            multiplierSlider.value = multiplierTracker;
+            if (multiplierThresholds[currentMultiplier - 1] <= multiplierTracker)
+            {
+                multiplierTracker = 0;
+                currentMultiplier++;
+                multiplierText.text = "X " + currentMultiplier;
+                multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+            }
+        }
+    }
+
+    public void NoteMissed()
+    {
+        print("miss");
+
+        multiplierTracker = 0;
+        currentMultiplier = 1;
+        multiplierText.text = "X " + currentMultiplier;
+        multiplierSlider.value = multiplierTracker;
+        multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
     }
 }
