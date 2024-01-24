@@ -11,4 +11,7 @@ public class Card : ScriptableObject
     public float dropRate;
     //public fonction;
 
+    //public Enum function name
+    //new static class functions list with case;
+    
 }
