@@ -20,15 +20,23 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
 
     [Header("Multiplier")]
-    int currentMultiplier;
-    int multiplierTracker;
     public int[] multiplierThresholds;
     public TMP_Text multiplierText;
     public Slider multiplierSlider;
+    int currentMultiplier;
+    int multiplierTracker;
+
+    [Header("Card")]
+    public Card[] allCard;
+    public GameObject cardPrefab;
+    public int inventorySize;
+    public GameObject[] inventorySlot;
+    Card[] cardInventory;
     void Start()
     {
         instance = this;
         currentMultiplier = 1;
+        cardInventory = new Card[inventorySize];
     }
 
     // Update is called once per frame
@@ -44,8 +52,68 @@ public class GameManager : MonoBehaviour
                 music.Play();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetCard();
+        }
     }
 
+    void GetCard()
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (cardInventory[i] == null)
+            {
+                cardInventory[i] = allCard[Random.Range(0, allCard.Length - 1)];
+                UpdateInventorySlot(i);
+                return;
+            }
+        }
+    }
+    void GetCard(Card card)
+    {
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (cardInventory[i] == null)
+            {
+                cardInventory[i] = card;
+                UpdateInventorySlot(i);
+                return;
+            }
+        }
+    }
+    public void UseCard(int slotId)
+    {
+        if (cardInventory[slotId] != null)
+        {
+            //cardInventory[slotId].function;
+            cardInventory[slotId] = null;
+            UpdateInventorySlot(slotId);
+        }
+        
+    }
+
+    void UpdateInventorySlot(int i)
+    {
+            if (cardInventory[i] == null && inventorySlot[i].transform.childCount != 0)
+            {
+                Destroy(inventorySlot[i].transform.GetChild(0).gameObject);
+            }
+            else if (cardInventory[i] != null && inventorySlot[i].transform.childCount == 0)
+            {
+                GameObject card = Instantiate(cardPrefab, inventorySlot[i].transform);
+                card.GetComponent<CardDisplay>().card = cardInventory[i];
+                card.GetComponent<CardDisplay>().Display();
+            }
+            else if (cardInventory[i] != null && inventorySlot[i].transform.childCount != 0)
+            {
+                Destroy(inventorySlot[i].transform.GetChild(0).gameObject);
+                GameObject card = Instantiate(cardPrefab, inventorySlot[i].transform);
+                card.GetComponent<CardDisplay>().card = cardInventory[i];
+                card.GetComponent<CardDisplay>().Display();
+            }
+    }
     public void NoteHit()
     {
         score += scorePerNote * currentMultiplier;
