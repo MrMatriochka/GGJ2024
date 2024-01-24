@@ -19,7 +19,19 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                GameManager.instance.NoteHit();
+                if(Mathf.Abs(transform.position.y) > 0.25)
+                {
+                    GameManager.instance.NormalHit();
+                }
+                else if (Mathf.Abs(transform.position.y) > 0.05f)
+                {
+                    GameManager.instance.GoodHit();
+                }
+                else
+                {
+                    GameManager.instance.PerfectHit();
+                }
+                //GameManager.instance.NoteHit();
                 myState = States.Pressed;
 
                 gameObject.SetActive(false);

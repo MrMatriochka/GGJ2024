@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public BeatScroller beatScroller;
     public static GameManager instance;
 
-    public int noteScore;
+    public int scorePerNote;
+    public int scorePerGoodNote;
+    public int scorePerPerfectNote;
     int score;
     public TMP_Text scoreText;
 
@@ -44,8 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void NoteHit()
     {
-        print("hit");
-        score += noteScore * currentMultiplier;
+        score += scorePerNote * currentMultiplier;
         scoreText.text = "Score: " + score;
         if (currentMultiplier - 1 < multiplierThresholds.Length)
         {
@@ -61,6 +62,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NormalHit()
+    {
+        score += scorePerNote * currentMultiplier;
+        NoteHit();
+    }
+    public void GoodHit()
+    {
+        score += scorePerGoodNote * currentMultiplier;
+        NoteHit();
+    }
+    public void PerfectHit()
+    {
+        score += scorePerPerfectNote * currentMultiplier;
+        NoteHit();
+    }
     public void NoteMissed()
     {
         print("miss");
