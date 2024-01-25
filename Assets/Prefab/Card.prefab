@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2503926423806732125}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 160.7202}
+  m_AnchoredPosition: {x: -0, y: 0}
+  m_SizeDelta: {x: 58.9576, y: 104.557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6838792813199088987
 CanvasRenderer:
@@ -127,8 +127,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0047, y: 54.6977}
-  m_SizeDelta: {x: 95.8093, y: 45.0045}
+  m_AnchoredPosition: {x: -0.0001, y: 39.739}
+  m_SizeDelta: {x: 52.8163, y: 25.079}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &157274171211425612
 CanvasRenderer:
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.1
-  m_fontSizeBase: 19.1
+  m_fontSize: 11.97
+  m_fontSizeBase: 11.97
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -261,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22.8}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.0001, y: -10.1738}
+  m_SizeDelta: {x: 47.0901, y: 74.7476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3047597926177582921
 CanvasRenderer:

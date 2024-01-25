@@ -9,9 +9,9 @@ public class Card : ScriptableObject
     public string description;
     public Sprite icon;
     public float dropRate;
-    //public fonction;
 
-    //public Enum function name
-    //new static class functions list with case;
-    
+    [Header("Function")]
+    public CardFunctions.Function function;
+    public float timer;
+    public int integer;
 }

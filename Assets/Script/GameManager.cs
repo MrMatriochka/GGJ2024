@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public Slider multiplierSlider;
     int currentMultiplier;
     int multiplierTracker;
+    [HideInInspector] public int bonusMultiplier;
 
     [Header("Card")]
     public Card[] allCard;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentMultiplier = 1;
+        bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
     }
 
@@ -119,7 +121,7 @@ public class GameManager : MonoBehaviour
     }
     public void NoteHit()
     {
-        score += scorePerNote * currentMultiplier;
+        score += scorePerNote * currentMultiplier * bonusMultiplier;
         scoreText.text = "Score: " + score;
         if (currentMultiplier - 1 < multiplierThresholds.Length)
         {
