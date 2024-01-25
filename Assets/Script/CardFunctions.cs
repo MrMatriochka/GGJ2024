@@ -16,9 +16,14 @@ public class CardFunctions : MonoBehaviour
         Multiplier
     }
     public static CardFunctions instance;
+    GameManager gameManager;
     private void Awake()
     {
         instance = this;
+    }
+    private void Start()
+    {
+        GameManager.instance = gameManager;
     }
     public void CallFunction(Function function,float timer,int integer)
     {
@@ -27,14 +32,18 @@ public class CardFunctions : MonoBehaviour
             case Function.None:
                 break;
             case Function.TimerShield:
+                StartCoroutine(TimerShield(timer));
                 break;
-            case Function.MissShield: 
+            case Function.MissShield:
+                MissShield(integer);
                 break;
             case Function.Reroll:
                 break; 
             case Function.ReduceToxicity:
+                ReduceToxicity(integer);
                 break;
             case Function.SlowMo:
+                StartCoroutine(SlowMo(timer));
                 break;
             case Function.Multiplier:
                 StartCoroutine(Multiply(timer, integer));
@@ -46,9 +55,46 @@ public class CardFunctions : MonoBehaviour
 
     IEnumerator Multiply(float timer, int multiplier)
     {
-        GameManager.instance.bonusMultiplier *= multiplier;
+        gameManager.bonusMultiplier *= multiplier;
         yield return new WaitForSeconds(timer);
-        GameManager.instance.bonusMultiplier /= multiplier;
+        gameManager.bonusMultiplier /= multiplier;
         yield return null;
+    }
+    IEnumerator TimerShield(float timer)
+    {
+        gameManager.shield = true;
+        yield return new WaitForSeconds(timer);
+        gameManager.shield = false;
+        yield return null;
+    }
+    IEnumerator SlowMo(float timer)
+    {
+        Time.timeScale = 0.75f;
+        yield return new WaitForSeconds(timer);
+        Time.timeScale = 1;
+        yield return null;
+    }
+    void ReduceToxicity(int percent) 
+    {
+        gameManager.toxicity -= percent;
+        if(gameManager.toxicity<0)
+        {
+            gameManager.toxicity = 0;
+        }
+    }
+    void MissShield(int miss)
+    {
+        gameManager.missShield += miss;
+    }
+    void Reroll()
+    {
+        for (int i = 0; i < gameManager.inventorySize; i++)
+        {
+            if (gameManager.cardInventory[i] != null)
+            {
+                gameManager.cardInventory[i] = gameManager.allCard[Random.Range(0, gameManager.allCard.Length - 1)];
+                gameManager.UpdateInventorySlot(i);
+            }
+        }
     }
 }
