@@ -25,13 +25,22 @@ public class GameManager : MonoBehaviour
     public Slider multiplierSlider;
     int currentMultiplier;
     int multiplierTracker;
+    [HideInInspector] public int bonusMultiplier;
 
     [Header("Card")]
     public Card[] allCard;
     public GameObject cardPrefab;
     public int inventorySize;
     public GameObject[] inventorySlot;
-    Card[] cardInventory;
+    [HideInInspector] public Card[] cardInventory;
+
+    [Header("Toxicity")]
+    public Slider toxicitySlider;
+    [HideInInspector] public float toxicity;
+    public float toxicityGainPerMiss;
+    public float toxicityGainPerMissClick;
+    [HideInInspector] public bool shield;
+    [HideInInspector] public int missShield;
     private void Awake()
     {
         instance = this;
@@ -39,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentMultiplier = 1;
+        bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
     }
 
@@ -60,9 +70,17 @@ public class GameManager : MonoBehaviour
         {
             GetCard();
         }
-    }
 
-    void GetCard()
+        if (toxicity>=100)
+        {
+            GameOver();
+        }
+    }
+    void GameOver()
+    {
+        print("GameOver");
+    }
+    public void GetCard()
     {
         for (int i = 0; i < inventorySize; i++)
         {
@@ -90,14 +108,15 @@ public class GameManager : MonoBehaviour
     {
         if (cardInventory[slotId] != null)
         {
-            //cardInventory[slotId].function;
+            Card card = cardInventory[slotId];
+            CardFunctions.instance.CallFunction(card.function, card.timer,card.integer);
             cardInventory[slotId] = null;
             UpdateInventorySlot(slotId);
         }
         
     }
 
-    void UpdateInventorySlot(int i)
+    public void UpdateInventorySlot(int i)
     {
             if (cardInventory[i] == null && inventorySlot[i].transform.childCount != 0)
             {
@@ -119,8 +138,10 @@ public class GameManager : MonoBehaviour
     }
     public void NoteHit()
     {
-        score += scorePerNote * currentMultiplier;
+        score += scorePerNote * currentMultiplier * bonusMultiplier;
         scoreText.text = "Score: " + score;
+        hitNoteNb++;
+        totalNoteNb++;
         if (currentMultiplier - 1 < multiplierThresholds.Length)
         {
             multiplierTracker++;
@@ -152,22 +173,63 @@ public class GameManager : MonoBehaviour
     }
     public void NoteMissed()
     {
-        print("miss");
-
-        multiplierTracker = 0;
-        currentMultiplier = 1;
-        multiplierText.text = "X " + currentMultiplier;
-        multiplierSlider.value = multiplierTracker;
-        multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+        totalNoteNb++;
+        if (missShield > 0)
+        {
+            missShield--;
+        }
+        if (!shield && missShield <=0)
+        {
+            toxicity += toxicityGainPerMiss;
+            multiplierTracker = 0;
+            currentMultiplier = 1;
+            multiplierText.text = "X " + currentMultiplier;
+            multiplierSlider.value = multiplierTracker;
+            multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+        } 
     }
     public void NoteMissClick()
     {
-        print("missClick");
+        if (missShield > 0)
+        {
+            missShield--;
+        }
+        if (!shield && missShield <= 0)
+        {
+            toxicity += toxicityGainPerMissClick;
+            multiplierTracker = 0;
+            currentMultiplier = 1;
+            multiplierText.text = "X " + currentMultiplier;
+            multiplierSlider.value = multiplierTracker;
+            multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+        }
+    }
 
-        multiplierTracker = 0;
-        currentMultiplier = 1;
-        multiplierText.text = "X " + currentMultiplier;
-        multiplierSlider.value = multiplierTracker;
-        multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
+    [Header("Stats")]
+    public TMP_Text endScoreText;
+    public TMP_Text precisionText;
+    public GameObject newHighScore;
+    int totalNoteNb;
+    int hitNoteNb;
+    void EndStats()
+    {
+        if (PlayerPrefs.HasKey(music.clip.name))
+        {
+            if (PlayerPrefs.GetInt(music.clip.name) < score)
+            {
+                PlayerPrefs.SetInt(music.clip.name, score);
+                PlayerPrefs.Save();
+                newHighScore.SetActive(true);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(music.clip.name, score);
+            PlayerPrefs.Save();
+            newHighScore.SetActive(true);
+        }
+        endScoreText.text = score.ToString();
+        int precision = Mathf.RoundToInt((hitNoteNb / totalNoteNb) * 100);
+        precisionText.text = precision.ToString();
     }
 }

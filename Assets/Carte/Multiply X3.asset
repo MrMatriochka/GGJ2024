@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff0b6fa7da064942a67b6d1340a0170, type: 3}
+  m_Name: Multiply X3
+  m_EditorClassIdentifier: 
+  name: Multiply X3
+  description: oui oui
+  icon: {fileID: 21300000, guid: 0e48b7b9aa4e18f458bd13b6124be49b, type: 3}
+  dropRate: 100
+  function: 6
+  timer: 5
+  integer: 3
