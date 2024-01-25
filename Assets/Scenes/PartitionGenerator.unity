@@ -2085,6 +2085,10 @@ MonoBehaviour:
   multiplierThresholds: 04000000080000001000000020000000
   multiplierText: {fileID: 564201234}
   multiplierSlider: {fileID: 1476537489}
+  allCard: []
+  cardPrefab: {fileID: 0}
+  inventorySize: 0
+  inventorySlot: []
 --- !u!4 &1981404054
 Transform:
   m_ObjectHideFlags: 0

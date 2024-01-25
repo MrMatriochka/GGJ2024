@@ -32,9 +32,12 @@ public class GameManager : MonoBehaviour
     public int inventorySize;
     public GameObject[] inventorySlot;
     Card[] cardInventory;
-    void Start()
+    private void Awake()
     {
         instance = this;
+    }
+    void Start()
+    {
         currentMultiplier = 1;
         cardInventory = new Card[inventorySize];
     }
