@@ -140,6 +140,8 @@ public class GameManager : MonoBehaviour
     {
         score += scorePerNote * currentMultiplier * bonusMultiplier;
         scoreText.text = "Score: " + score;
+        hitNoteNb++;
+        totalNoteNb++;
         if (currentMultiplier - 1 < multiplierThresholds.Length)
         {
             multiplierTracker++;
@@ -171,7 +173,7 @@ public class GameManager : MonoBehaviour
     }
     public void NoteMissed()
     {
-        print("miss");
+        totalNoteNb++;
         if (missShield > 0)
         {
             missShield--;
@@ -188,7 +190,6 @@ public class GameManager : MonoBehaviour
     }
     public void NoteMissClick()
     {
-        print("missClick");
         if (missShield > 0)
         {
             missShield--;
@@ -202,5 +203,33 @@ public class GameManager : MonoBehaviour
             multiplierSlider.value = multiplierTracker;
             multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
         }
+    }
+
+    [Header("Stats")]
+    public TMP_Text endScoreText;
+    public TMP_Text precisionText;
+    public GameObject newHighScore;
+    int totalNoteNb;
+    int hitNoteNb;
+    void EndStats()
+    {
+        if (PlayerPrefs.HasKey(music.clip.name))
+        {
+            if (PlayerPrefs.GetInt(music.clip.name) < score)
+            {
+                PlayerPrefs.SetInt(music.clip.name, score);
+                PlayerPrefs.Save();
+                newHighScore.SetActive(true);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt(music.clip.name, score);
+            PlayerPrefs.Save();
+            newHighScore.SetActive(true);
+        }
+        endScoreText.text = score.ToString();
+        int precision = Mathf.RoundToInt((hitNoteNb / totalNoteNb) * 100);
+        precisionText.text = precision.ToString();
     }
 }
