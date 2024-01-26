@@ -15,7 +15,7 @@ MonoBehaviour:
   name: MissShield Tier1
   description: oui oui
   icon: {fileID: 21300000, guid: 0e48b7b9aa4e18f458bd13b6124be49b, type: 3}
-  dropRate: 100
+  dropRate: 1
   function: 2
   timer: 0
   integer: 3

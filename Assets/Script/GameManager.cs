@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     public int inventorySize;
     public GameObject[] inventorySlot;
     [HideInInspector] public Card[] cardInventory;
+    public float timeBetweenCard;
+    float timeToNextCard;
+    public float cdReducePerPefectHit;
 
     [Header("Toxicity")]
     public Slider toxicitySlider;
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
         currentMultiplier = 1;
         bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
+        timeToNextCard = timeBetweenCard;
     }
 
     // Update is called once per frame
@@ -72,11 +76,17 @@ public class GameManager : MonoBehaviour
 
                 music.Play();
             }
+
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (timeToNextCard <= 0)
         {
             GetCard();
+            timeToNextCard = timeBetweenCard;
+        }
+        else
+        {
+            timeToNextCard -= Time.deltaTime;
         }
 
         if (toxicity>=100)
@@ -94,11 +104,38 @@ public class GameManager : MonoBehaviour
         {
             if (cardInventory[i] == null)
             {
-                cardInventory[i] = allCard[Random.Range(0, allCard.Length - 1)];
+                cardInventory[i] = GetRandomCard();
                 UpdateInventorySlot(i);
                 return;
             }
         }
+    }
+    Card GetRandomCard()
+    {
+        float totalDropRate = 0f;
+
+        // Calculate the total drop rate
+        foreach (Card card in allCard)
+        {
+            totalDropRate += card.dropRate;
+        }
+
+        // Generate a random number between 0 and the total drop rate
+        float randomValue = Random.Range(0f, totalDropRate);
+
+        // Iterate through the drop items and find the one that matches the random value
+        foreach (Card card in allCard)
+        {
+            if (randomValue < card.dropRate)
+            {
+                return card;
+            }
+
+            randomValue -= card.dropRate;
+        }
+
+        // Fallback in case of any issues
+        return null;
     }
     void GetCard(Card card)
     {
@@ -177,6 +214,7 @@ public class GameManager : MonoBehaviour
     public void PerfectHit()
     {
         score += scorePerPerfectNote * currentMultiplier;
+        timeToNextCard -= cdReducePerPefectHit;
         NoteHit();
     }
     public void NoteMissed()

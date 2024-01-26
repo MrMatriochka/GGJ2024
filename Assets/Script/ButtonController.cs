@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    SpriteRenderer image;
-    public Sprite defaultImage;
-    public Sprite pressedImage;
+    public SpriteRenderer image;
 
     public KeyCode keyToPress;
 
     [HideInInspector]public bool canBePressed;
-    void Start()
-    {
-        image = GetComponent<SpriteRenderer>();
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(keyToPress))
         {
-            image.sprite = pressedImage;
+            image.enabled = true;
 
             if (!canBePressed)
             {
@@ -30,7 +24,7 @@ public class ButtonController : MonoBehaviour
         }
         if (Input.GetKeyUp(keyToPress))
         {
-            image.sprite = defaultImage;
+            image.enabled = false;
         }
     }
 }
