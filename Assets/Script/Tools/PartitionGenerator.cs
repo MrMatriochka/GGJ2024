@@ -44,17 +44,20 @@ public class PartitionGenerator : MonoBehaviour
             {
                 GameObject note = Instantiate(notePrefab, tracks[i].position, Quaternion.identity);
                 note.transform.parent = finalTracks[i].transform;
+                note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.name = id.ToString();
                 id++;
             }
             if (Input.GetKeyDown(keyToLongPress[i]))
             {
                 GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
+                note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.transform.parent = finalTracks[i].transform;
             }
             if (Input.GetKeyUp(keyToLongPress[i]))
             {
                 GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
+                note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.transform.parent = finalTracks[i].transform;
             }
         }
