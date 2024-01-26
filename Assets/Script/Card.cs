@@ -14,4 +14,6 @@ public class Card : ScriptableObject
     public CardFunctions.Function function;
     public float timer;
     public int integer;
+
+    public bool unlocked;
 }

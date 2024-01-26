@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Card")]
     public Card[] allCard;
+    List<Card> unlockedCard = new List<Card>();
     public GameObject cardPrefab;
     public int inventorySize;
     public GameObject[] inventorySlot;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     public float toxicityGainPerMissClick;
     [HideInInspector] public bool shield;
     [HideInInspector] public int missShield;
+
     private void Awake()
     {
         if (instance == null)
@@ -57,11 +59,34 @@ public class GameManager : MonoBehaviour
         }
     }
     void Start()
-    {
+    { 
+        if (PlayerPrefs.HasKey("FirstLaunch"))
+        {
+            foreach (Card card in allCard)
+            {
+                if (PlayerPrefs.HasKey(card.name)&& !card.unlocked)
+                {
+                    card.unlocked = true;
+                }
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("FirstLaunch", 1);
+            foreach (Card card in allCard)
+            {
+                if (card.unlocked)
+                {
+                    PlayerPrefs.SetInt(card.name, 1);
+                }
+            }
+        }
+
         currentMultiplier = 1;
         bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
         timeToNextCard = timeBetweenCard;
+        UpdateUnlockedCard();
     }
 
     // Update is called once per frame
@@ -98,6 +123,25 @@ public class GameManager : MonoBehaviour
     {
         print("GameOver");
     }
+
+    void UpdateUnlockedCard()
+    {
+        unlockedCard.Clear();
+        foreach (Card card in allCard)
+        {
+            if (card.unlocked)
+            {
+                unlockedCard.Add(card);
+            }
+        }
+    }
+    void UnlockCard(Card card)
+    {
+        card.unlocked = true;
+        PlayerPrefs.SetInt(card.name,1);
+        PlayerPrefs.Save();
+        UpdateUnlockedCard();
+    }
     public void GetCard()
     {
         for (int i = 0; i < inventorySize; i++)
@@ -115,7 +159,7 @@ public class GameManager : MonoBehaviour
         float totalDropRate = 0f;
 
         // Calculate the total drop rate
-        foreach (Card card in allCard)
+        foreach (Card card in unlockedCard)
         {
             totalDropRate += card.dropRate;
         }
@@ -124,7 +168,7 @@ public class GameManager : MonoBehaviour
         float randomValue = Random.Range(0f, totalDropRate);
 
         // Iterate through the drop items and find the one that matches the random value
-        foreach (Card card in allCard)
+        foreach (Card card in unlockedCard)
         {
             if (randomValue < card.dropRate)
             {
@@ -200,7 +244,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void NormalHit()
     {
         score += scorePerNote * currentMultiplier;
