@@ -19,11 +19,19 @@ public class CardFunctions : MonoBehaviour
     GameManager gameManager;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     private void Start()
     {
-        GameManager.instance = gameManager;
+        gameManager = GameManager.instance;
     }
     public void CallFunction(Function function,float timer,int integer)
     {

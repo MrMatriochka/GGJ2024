@@ -43,7 +43,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int missShield;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void Start()
     {

@@ -178,8 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7071965069043105622}
   - component: {fileID: 6009650118380144707}
-  - component: {fileID: 8456359832923076036}
   - component: {fileID: 4126449432993262686}
+  - component: {fileID: 3079603964097717184}
   m_Layer: 0
   m_Name: Note Longue
   m_TagString: Untagged
@@ -256,41 +256,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &8456359832923076036
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7443055236411949941}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.00000009934107, y: 2.975672}
-  m_Size: {x: 1.5426764, y: 7.188819}
-  m_Direction: 0
 --- !u!114 &4126449432993262686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,3 +269,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyToPress: 119
+--- !u!136 &3079603964097717184
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443055236411949941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 7.027431
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.9520943, z: 0}

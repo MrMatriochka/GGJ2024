@@ -6,6 +6,7 @@ using UnityEditor;
 public class PartitionGenerator : MonoBehaviour
 {
     public Transform[] tracks;
+    public Transform[] finalTracks;
     public KeyCode[] keyToPress;
     public KeyCode[] keyToLongPress;
     public GameObject notePrefab;
@@ -42,19 +43,19 @@ public class PartitionGenerator : MonoBehaviour
             if (Input.GetKeyDown(keyToPress[i]))
             {
                 GameObject note = Instantiate(notePrefab, tracks[i].position, Quaternion.identity);
-                note.transform.parent = noteHolder.transform;
+                note.transform.parent = finalTracks[i].transform;
                 note.name = id.ToString();
                 id++;
             }
             if (Input.GetKeyDown(keyToLongPress[i]))
             {
                 GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
-                note.transform.parent = noteHolder.transform;
+                note.transform.parent = finalTracks[i].transform;
             }
             if (Input.GetKeyUp(keyToLongPress[i]))
             {
                 GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
-                note.transform.parent = noteHolder.transform;
+                note.transform.parent = finalTracks[i].transform;
             }
         }
 

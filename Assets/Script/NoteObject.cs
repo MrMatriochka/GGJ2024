@@ -19,11 +19,11 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                if(Mathf.Abs(transform.position.y) > 0.25)
+                if(Mathf.Abs(transform.localPosition.y) > 0.25)
                 {
                     GameManager.instance.NormalHit();
                 }
-                else if (Mathf.Abs(transform.position.y) > 0.05f)
+                else if (Mathf.Abs(transform.localPosition.y) > 0.05f)
                 {
                     GameManager.instance.GoodHit();
                 }
@@ -37,7 +37,7 @@ public class NoteObject : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.tag == "Activator")
         {
@@ -45,7 +45,7 @@ public class NoteObject : MonoBehaviour
             collision.GetComponent<ButtonController>().canBePressed = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.tag == "Activator" && myState != States.Pressed)
         {
