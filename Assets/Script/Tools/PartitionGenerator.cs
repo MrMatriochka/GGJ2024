@@ -42,7 +42,7 @@ public class PartitionGenerator : MonoBehaviour
         {
             if (Input.GetKeyDown(keyToPress[i]))
             {
-                GameObject note = Instantiate(notePrefab, tracks[i].position, Quaternion.identity);
+                GameObject note = Instantiate(notePrefab, tracks[i].position, Quaternion.Euler(90,0,90));
                 note.transform.parent = finalTracks[i].transform;
                 note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.name = id.ToString();
