@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
 public class Card : ScriptableObject
 {
-    public new string name;
+    public Material nameDecalMat;
+    public Material iconDecalMat;
     public string description;
-    public Sprite icon;
     public float dropRate;
 
     [Header("Function")]

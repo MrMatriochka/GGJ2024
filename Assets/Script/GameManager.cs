@@ -61,14 +61,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    void Start()
-    { 
+
         if (PlayerPrefs.HasKey("FirstLaunch"))
         {
             foreach (Card card in allCard)
             {
-                if (PlayerPrefs.HasKey(card.name)&& !card.unlocked)
+                if (PlayerPrefs.HasKey(card.name) && !card.unlocked)
                 {
                     card.unlocked = true;
                 }
@@ -85,6 +83,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+    void Start()
+    { 
+        
 
         currentMultiplier = 1;
         bonusMultiplier = 1;
@@ -221,6 +223,7 @@ public class GameManager : MonoBehaviour
                 GameObject card = Instantiate(cardPrefab, inventorySlot[i].transform);
                 card.GetComponent<CardDisplay>().card = cardInventory[i];
                 card.GetComponent<CardDisplay>().Display();
+                card.transform.localPosition = Vector3.zero;
             }
             else if (cardInventory[i] != null && inventorySlot[i].transform.childCount != 0)
             {
@@ -228,6 +231,7 @@ public class GameManager : MonoBehaviour
                 GameObject card = Instantiate(cardPrefab, inventorySlot[i].transform);
                 card.GetComponent<CardDisplay>().card = cardInventory[i];
                 card.GetComponent<CardDisplay>().Display();
+                card.transform.localPosition = Vector3.zero;
             }
     }
     public void NoteHit()

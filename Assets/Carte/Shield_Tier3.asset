@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff0b6fa7da064942a67b6d1340a0170, type: 3}
   m_Name: Shield_Tier3
   m_EditorClassIdentifier: 
-  name: MissShield Tier3
+  nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  iconDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
   description: oui oui
-  icon: {fileID: 21300000, guid: 0e48b7b9aa4e18f458bd13b6124be49b, type: 3}
   dropRate: 1
   function: 2
   timer: 0
   integer: 8
+  unlocked: 1
