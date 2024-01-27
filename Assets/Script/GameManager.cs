@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Toxicity")]
     public Slider toxicitySlider;
+    public Volume toxicityVignette;
+    Vignette vg;
     [HideInInspector] public float toxicity;
     public float toxicityGainPerMiss;
     public float toxicityGainPerMissClick;
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour
         bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
         timeToNextCard = timeBetweenCard;
+        toxicityVignette.sharedProfile.TryGet(out vg);
         UpdateUnlockedCard();
     }
 
@@ -270,6 +275,8 @@ public class GameManager : MonoBehaviour
         if (!shield && missShield <=0)
         {
             toxicity += toxicityGainPerMiss;
+            toxicitySlider.value = toxicity;
+            vg.intensity.value = toxicity / 100;
             multiplierTracker = 0;
             currentMultiplier = 1;
             multiplierText.text = "X " + currentMultiplier;
@@ -286,6 +293,8 @@ public class GameManager : MonoBehaviour
         if (!shield && missShield <= 0)
         {
             toxicity += toxicityGainPerMissClick;
+            toxicitySlider.value = toxicity;
+            vg.intensity.value = toxicity / 100;
             multiplierTracker = 0;
             currentMultiplier = 1;
             multiplierText.text = "X " + currentMultiplier;
