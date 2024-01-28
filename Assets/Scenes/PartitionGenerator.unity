@@ -201,10 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184a1d40a711d564f86631827327b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImage: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
-    type: 3}
-  pressedImage: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270,
-    type: 3}
+  image: {fileID: 0}
   keyToPress: 113
   canBePressed: 0
 --- !u!212 &432870998
@@ -681,10 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184a1d40a711d564f86631827327b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImage: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
-    type: 3}
-  pressedImage: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270,
-    type: 3}
+  image: {fileID: 0}
   keyToPress: 114
   canBePressed: 0
 --- !u!212 &770203774
@@ -1364,12 +1358,13 @@ MonoBehaviour:
   - {fileID: 1208663065}
   - {fileID: 1323317304}
   - {fileID: 1521733930}
-  keyToPress: 7100000077000000650000007200000072000000
-  keyToLongPress: 6100000073000000640000006600000066000000
+  keyToPress: 7100000077000000650000007200000020000000
+  keyToLongPress: 6100000073000000640000006600000067000000
   notePrefab: {fileID: 1487897185}
   longNotePrefab: {fileID: 3118295320729238340, guid: f18ad83b40e69be45bfbc0ebd40d078b,
     type: 3}
   noteHolder: {fileID: 1804418029}
+  audioSource: {fileID: 2025629972}
   beatTempo: 120
   prefabPath: Assets/Prefab/Partition
   prefabName: test
@@ -1762,10 +1757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184a1d40a711d564f86631827327b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImage: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
-    type: 3}
-  pressedImage: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270,
-    type: 3}
+  image: {fileID: 0}
   keyToPress: 101
   canBePressed: 0
 --- !u!212 &1503137677
@@ -2183,11 +2175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184a1d40a711d564f86631827327b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImage: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
-    type: 3}
-  pressedImage: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270,
-    type: 3}
-  keyToPress: 114
+  image: {fileID: 0}
+  keyToPress: 32
   canBePressed: 0
 --- !u!212 &1636644158
 SpriteRenderer:
@@ -2474,7 +2463,10 @@ MonoBehaviour:
   inventorySize: 0
   inventorySlot: []
   cardInventory: []
+  timeBetweenCard: 0
+  cdReducePerPefectHit: 0
   toxicitySlider: {fileID: 0}
+  toxicityVignette: {fileID: 0}
   toxicity: 0
   toxicityGainPerMiss: 0
   toxicityGainPerMissClick: 0
@@ -2603,6 +2595,134 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2025629971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025629973}
+  - component: {fileID: 2025629972}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2025629972
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025629971}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f8f7f82c4af1c624c8218ca180da860e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.672
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &2025629973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025629971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.21497314, y: 0.63383085, z: 10.274614}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2076654769
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,10 +2770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184a1d40a711d564f86631827327b649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImage: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
-    type: 3}
-  pressedImage: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270,
-    type: 3}
+  image: {fileID: 0}
   keyToPress: 119
   canBePressed: 0
 --- !u!212 &2076654772
@@ -2930,3 +3047,4 @@ SceneRoots:
   - {fileID: 2006739808}
   - {fileID: 1191043690}
   - {fileID: 1804418030}
+  - {fileID: 2025629973}

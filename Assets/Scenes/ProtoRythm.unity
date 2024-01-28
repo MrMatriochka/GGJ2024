@@ -367,7 +367,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &432871000
 Rigidbody:
@@ -705,8 +705,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1994030487}
   - {fileID: 1439102424}
-  - {fileID: 840848662}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 46.738, y: 0, z: 0}
 --- !u!1 &564201232
@@ -1421,7 +1421,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &770203776
 Rigidbody:
@@ -2045,7 +2045,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 563a5627e3788bd4183ac3296b3a6db5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f8f7f82c4af1c624c8218ca180da860e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3029,7 +3029,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1503137679
 Rigidbody:
@@ -3243,18 +3243,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525172769}
   m_CullTransparentMesh: 1
---- !u!114 &1647509052 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 742999824775707493, guid: c2e684bd256f2654ca34032ca3d90d4f,
-    type: 3}
-  m_PrefabInstance: {fileID: 840848661}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614028ca721a77d4f945751db7caa3d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+--- !u!1001 &1635355901
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 551110561}
+    m_Modifications:
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139578530894560739, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+        type: 3}
+      propertyPath: m_Name
+      value: test 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3, type: 3}
 --- !u!1 &1911491067
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,7 +3423,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1911491072
 Rigidbody:
@@ -3550,7 +3611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 1005074951}
   startPlaying: 0
-  beatScroller: {fileID: 1647509052}
+  beatScroller: {fileID: 1994030488}
   scorePerTicLongNote: 1
   scorePerNote: 100
   scorePerGoodNote: 150
@@ -3625,6 +3686,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81e7bd2754b97964f9fda2a2886dbc03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1994030487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1180987886525857626, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1635355901}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1994030488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 53925749893572222, guid: 4ae9c47766ce7ec4aa64f42ec0ac1fd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1635355901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614028ca721a77d4f945751db7caa3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2006739804
@@ -3935,7 +4014,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1}
+  m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2076654774
 Rigidbody:
