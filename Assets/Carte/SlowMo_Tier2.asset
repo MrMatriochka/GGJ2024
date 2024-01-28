@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff0b6fa7da064942a67b6d1340a0170, type: 3}
   m_Name: SlowMo_Tier2
   m_EditorClassIdentifier: 
-  nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  nameDecalMat: {fileID: 2100000, guid: 07c2abab6a9acba438a26812c6d40884, type: 2}
   iconDecalMat: {fileID: 2100000, guid: fa4e205871983c54b9b46be23078019d, type: 2}
   description: oui oui
   dropRate: 0.3

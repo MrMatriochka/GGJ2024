@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
             {
                 multiplierTracker = 0;
                 currentMultiplier++;
-                multiplierText.text = "X " + currentMultiplier;
+                multiplierText.text = "x " + currentMultiplier;
                 multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
             }
         }

@@ -24,6 +24,7 @@ public class ButtonController : MonoBehaviour
             image.enabled = true;
             VFX.Play();
             SFX.Play();
+            SFX.pitch = Random.Range(.9f, 1.1f);
             if (!canBePressed)
             {
                 GameManager.instance.NoteMissClick();

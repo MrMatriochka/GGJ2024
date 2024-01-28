@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff0b6fa7da064942a67b6d1340a0170, type: 3}
   m_Name: Tomate
   m_EditorClassIdentifier: 
-  nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  nameDecalMat: {fileID: 2100000, guid: 39714d8a50cde004bbe619537c4187df, type: 2}
   iconDecalMat: {fileID: 2100000, guid: 048cfc80ec637924bb0013e619eab6cb, type: 2}
   description: oui oui
-  dropRate: 0
+  dropRate: 0.1
   function: 0
   timer: 0
   integer: 0

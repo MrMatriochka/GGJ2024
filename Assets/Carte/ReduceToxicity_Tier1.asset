@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff0b6fa7da064942a67b6d1340a0170, type: 3}
   m_Name: ReduceToxicity_Tier1
   m_EditorClassIdentifier: 
-  nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  nameDecalMat: {fileID: 2100000, guid: 11d61d8ce95aa214ebc325b6ee3a6834, type: 2}
   iconDecalMat: {fileID: 2100000, guid: 7d70878a18bfc6345a29ccdb34df161c, type: 2}
   description: oui oui
   dropRate: 0.6
