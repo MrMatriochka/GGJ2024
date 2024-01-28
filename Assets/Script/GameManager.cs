@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(!music.isPlaying && startPlaying)
+        if(!music.isPlaying && startPlaying && !gameOver)
         {
             EndStats();
         }
@@ -140,10 +140,14 @@ public class GameManager : MonoBehaviour
         else { allCard[16].dropRate = 0; }
     }
 
-    public GameObject gameOver;
+    public GameObject gameOverMenu;
+    bool gameOver;
     void GameOver()
     {
-        gameOver.SetActive(true);
+        gameOverMenu.SetActive(true);
+        beatScroller.hasStarted = false;
+        music.Stop();
+        gameOver = true;
     }
 
     public void Begin()
