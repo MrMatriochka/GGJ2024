@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7117973960138054527}
   - component: {fileID: 3758439893209726783}
   - component: {fileID: 6555775852680260324}
+  - component: {fileID: 5997832879471509281}
   m_Layer: 0
   m_Name: Star_01.019
   m_TagString: Decor
@@ -152,6 +153,27 @@ HingeJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!135 &5997832879471509281
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791538642822397014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.005910236
+  m_Center: {x: -0.0004130555, y: -0.00007400752, z: 0.0000000055588316}
 --- !u!1 &1672907427917271924
 GameObject:
   m_ObjectHideFlags: 0
