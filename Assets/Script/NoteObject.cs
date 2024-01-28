@@ -19,11 +19,11 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                if(Mathf.Abs(transform.localPosition.y+6) > 0.25)
+                if (Mathf.Abs(transform.localPosition.y+0.6f) > 0.6)
                 {
                     GameManager.instance.NormalHit();
                 }
-                else if (Mathf.Abs(transform.localPosition.y + 6) > 0.05f)
+                else if (Mathf.Abs(transform.localPosition.y +0.6f) > 0.2)
                 {
                     GameManager.instance.GoodHit();
                 }
