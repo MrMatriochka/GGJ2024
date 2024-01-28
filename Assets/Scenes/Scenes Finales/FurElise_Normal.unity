@@ -19782,6 +19782,11 @@ PrefabInstance:
       objectReference: {fileID: 673540780}
     - target: {fileID: 9002699000661676861, guid: 7cf4aaf5ac0c4b54da73bf8ee1235445,
         type: 3}
+      propertyPath: toxicityGainPerMiss
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002699000661676861, guid: 7cf4aaf5ac0c4b54da73bf8ee1235445,
+        type: 3}
       propertyPath: inventorySlot.Array.size
       value: 3
       objectReference: {fileID: 0}

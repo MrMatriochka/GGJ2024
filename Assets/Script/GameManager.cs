@@ -53,15 +53,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //{
+        //    DontDestroyOnLoad(gameObject);
             instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
 
         if (PlayerPrefs.HasKey("FirstLaunch"))
         {
@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
         toxicityVignette.sharedProfile.TryGet(out vg);
         UpdateUnlockedCard();
 
+        toxicity = 0;
         vg.intensity.value = toxicity / 100;
         toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
     }
