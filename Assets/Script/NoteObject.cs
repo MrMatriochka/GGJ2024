@@ -33,7 +33,8 @@ public class NoteObject : MonoBehaviour
                 }
                 myState = States.Pressed;
 
-                gameObject.SetActive(false);
+                StartCoroutine(Dissolve());
+                
             }
         }
     }
@@ -57,5 +58,19 @@ public class NoteObject : MonoBehaviour
                 GameManager.instance.NoteMissed();
             }
         }
+    }
+
+    public float dissolveSpeed;
+    IEnumerator Dissolve()
+    {
+        float t = 0;
+        while (t<1f)
+        {
+            t += Time.deltaTime * dissolveSpeed;
+            GetComponent<Renderer>().material.SetFloat("_Dissolve", t);
+            yield return null;
+        }
+        gameObject.SetActive(false);
+        yield return null;
     }
 }
