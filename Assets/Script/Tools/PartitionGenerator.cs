@@ -12,6 +12,7 @@ public class PartitionGenerator : MonoBehaviour
     public GameObject notePrefab;
     public GameObject longNotePrefab;
     public GameObject noteHolder;
+    public AudioSource audioSource;
 
     public float beatTempo;
     bool hasStarted;
@@ -31,6 +32,7 @@ public class PartitionGenerator : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 hasStarted = true;
+                audioSource.Play();
             }
         }
         else
@@ -62,7 +64,7 @@ public class PartitionGenerator : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             EndMusic();
         }
