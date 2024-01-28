@@ -359,18 +359,18 @@ public class GameManager : MonoBehaviour
     void EndStats()
     {
         endMenu.SetActive(true);
-        if (PlayerPrefs.HasKey(music.clip.name))
+        if (PlayerPrefs.HasKey(beatScroller.gameObject.name))
         {
-            if (PlayerPrefs.GetInt(music.clip.name) < score)
+            if (PlayerPrefs.GetInt(beatScroller.gameObject.name) < score)
             {
-                PlayerPrefs.SetInt(music.clip.name, score);
+                PlayerPrefs.SetInt(beatScroller.gameObject.name, score);
                 PlayerPrefs.Save();
                 newHighScore.SetActive(true);
             }
         }
         else
         {
-            PlayerPrefs.SetInt(music.clip.name, score);
+            PlayerPrefs.SetInt(beatScroller.gameObject.name, score);
             PlayerPrefs.Save();
             newHighScore.SetActive(true);
         }
