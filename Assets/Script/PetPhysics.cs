@@ -6,11 +6,14 @@ public class PetPhysics : MonoBehaviour
 {
     public float power;
     public GameObject[] decor;
+    public ScreenShake shake;
+    public float shakeTime;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) )
         {
             Prout();
+            shake.shake = shakeTime;
         }
     }
 

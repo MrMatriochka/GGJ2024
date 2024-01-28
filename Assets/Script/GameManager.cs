@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (timeToNextCard <= 0 && !gameOver)
+        if (timeToNextCard <= 0 && !gameOver && music.isPlaying)
         {
             GetCard();
             timeToNextCard = timeBetweenCard;
