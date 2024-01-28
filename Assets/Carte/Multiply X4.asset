@@ -15,7 +15,7 @@ MonoBehaviour:
   nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
   iconDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
   description: oui oui
-  dropRate: 1
+  dropRate: 0.1
   function: 6
   timer: 5
   integer: 4

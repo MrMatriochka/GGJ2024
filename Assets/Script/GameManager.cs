@@ -83,11 +83,16 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        if(!music.isPlaying && startPlaying)
+        {
+            EndStats();
+        }
     }
     void Start()
-    { 
-        
+    {
 
+        allCard[16].dropRate = 0;
         currentMultiplier = 1;
         bonusMultiplier = 1;
         cardInventory = new Card[inventorySize];
@@ -99,17 +104,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startPlaying)
-        {
-            if (Input.anyKeyDown)
-            {
-                startPlaying = true;
-                beatScroller.hasStarted = true;
-
-                music.Play();
-            }
-
-        }
 
         if (timeToNextCard <= 0)
         {
@@ -125,12 +119,40 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-    }
-    void GameOver()
-    {
-        print("GameOver");
+
+        //tomate dropRate
+        if (toxicity >= 90)
+        {
+            allCard[16].dropRate = 0.5f;
+        }
+        else if(toxicity >= 75)
+        {
+            allCard[16].dropRate = 0.35f;
+        }
+        else if (toxicity >= 50)
+        {
+            allCard[16].dropRate = 0.2f;
+        }
+        else if (toxicity >= 25)
+        {
+            allCard[16].dropRate = 0.1f;
+        }
+        else { allCard[16].dropRate = 0; }
     }
 
+    public GameObject gameOver;
+    void GameOver()
+    {
+        gameOver.SetActive(true);
+    }
+
+    public void Begin()
+    {
+        startPlaying = true;
+        beatScroller.hasStarted = true;
+
+        music.Play();
+    }
     void UpdateUnlockedCard()
     {
         unlockedCard.Clear();
@@ -163,31 +185,28 @@ public class GameManager : MonoBehaviour
     }
     Card GetRandomCard()
     {
-        float totalDropRate = 0f;
-
-        // Calculate the total drop rate
-        foreach (Card card in unlockedCard)
+        float totalWeight = 0;
+        foreach (Card card in allCard)
         {
-            totalDropRate += card.dropRate;
+            totalWeight += card.dropRate;
         }
+        
+        float diceRoll = Random.Range(0f, totalWeight);
 
-        // Generate a random number between 0 and the total drop rate
-        float randomValue = Random.Range(0f, totalDropRate);
-
-        // Iterate through the drop items and find the one that matches the random value
-        foreach (Card card in unlockedCard)
+        foreach (Card card in allCard)
         {
-            if (randomValue < card.dropRate)
+            if (card.dropRate >= diceRoll)
             {
                 return card;
             }
 
-            randomValue -= card.dropRate;
+            diceRoll -= card.dropRate;
         }
 
-        // Fallback in case of any issues
-        return null;
+        // As long as everything works we'll never reach this point, but better be notified if this happens!
+        throw new System.Exception("Reward generation failed!");
     }
+
     void GetCard(Card card)
     {
         for (int i = 0; i < inventorySize; i++)
@@ -313,8 +332,10 @@ public class GameManager : MonoBehaviour
     public GameObject newHighScore;
     int totalNoteNb;
     int hitNoteNb;
+    public GameObject endMenu;
     void EndStats()
     {
+        endMenu.SetActive(true);
         if (PlayerPrefs.HasKey(music.clip.name))
         {
             if (PlayerPrefs.GetInt(music.clip.name) < score)
@@ -330,8 +351,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
             newHighScore.SetActive(true);
         }
-        endScoreText.text = score.ToString();
+        endScoreText.text = "Score: " + score.ToString();
         int precision = Mathf.RoundToInt((hitNoteNb / totalNoteNb) * 100);
-        precisionText.text = precision.ToString();
+        precisionText.text = "Accuracy: " + precision.ToString();
     }
 }
