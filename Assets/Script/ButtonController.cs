@@ -8,6 +8,8 @@ public class ButtonController : MonoBehaviour
 
     public KeyCode keyToPress;
 
+    public GameObject spotLight;
+
     [HideInInspector]public bool canBePressed;
     public VisualEffect VFX;
     AudioSource SFX;
@@ -25,6 +27,7 @@ public class ButtonController : MonoBehaviour
             VFX.Play();
             SFX.Play();
             SFX.pitch = Random.Range(.9f, 1.1f);
+            spotLight.SetActive(true);
             if (!canBePressed)
             {
                 GameManager.instance.NoteMissClick();
@@ -33,6 +36,7 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyUp(keyToPress))
         {
             image.enabled = false;
+            spotLight.SetActive(false);
         }
     }
 }

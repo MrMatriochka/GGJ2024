@@ -11,4 +11,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenes Finales/template.unity
     guid: 04b544482bef0ac4ca07340c864e6c60
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/Debussy_Easy.unity
+    guid: 51af94d8049e7e84596bc31b1801eeb9
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/Debussy_Normal.unity
+    guid: ba6361e7a32c73c409974bd61de16af1
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/FlyMeToTheMoon_Easy.unity
+    guid: c362f855a611d694ab2c25815d74f2f5
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/FlyMeToTheMoon_Normal.unity
+    guid: 2ba2b93fea692ed4faae0eb8cc49a063
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/FurElise_Easy.unity
+    guid: 63df690d41b85e84296dc5437cd2a0fd
+  - enabled: 1
+    path: Assets/Scenes/Scenes Finales/FurElise_Normal.unity
+    guid: cd2739c6ff9ae0346b49f41f7d58e5e4
   m_configObjects: {}

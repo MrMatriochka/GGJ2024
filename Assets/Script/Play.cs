@@ -19,6 +19,5 @@ public class Play : MonoBehaviour
     {
         audioSource.Play();
         audioSource.pitch = Random.Range(0.9f, 1.1f);
-
     }
 }

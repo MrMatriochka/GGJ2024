@@ -282,25 +282,34 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public TMP_Text hitText;
     public void NormalHit()
     {
         score += scorePerNote * currentMultiplier;
+        hitText.text = "";
         NoteHit();
     }
     public void GoodHit()
     {
         score += scorePerGoodNote * currentMultiplier;
+        hitText.text = "Good";
+        hitText.color = Color.green;
         NoteHit();
     }
     public void PerfectHit()
     {
         score += scorePerPerfectNote * currentMultiplier;
         timeToNextCard -= cdReducePerPefectHit;
+        hitText.text = "Prefect";
+        hitText.color = Color.blue;
         NoteHit();
     }
     public void NoteMissed()
     {
         totalNoteNb++;
+        hitText.text = "Miss";
+        hitText.color = Color.red;
         if (missShield > 0)
         {
             missShield--;
@@ -320,6 +329,8 @@ public class GameManager : MonoBehaviour
     }
     public void NoteMissClick()
     {
+        hitText.text = "Miss";
+        hitText.color = Color.red;
         if (missShield > 0)
         {
             missShield--;
@@ -348,18 +359,18 @@ public class GameManager : MonoBehaviour
     void EndStats()
     {
         endMenu.SetActive(true);
-        if (PlayerPrefs.HasKey(music.clip.name))
+        if (PlayerPrefs.HasKey(beatScroller.gameObject.name))
         {
-            if (PlayerPrefs.GetInt(music.clip.name) < score)
+            if (PlayerPrefs.GetInt(beatScroller.gameObject.name) < score)
             {
-                PlayerPrefs.SetInt(music.clip.name, score);
+                PlayerPrefs.SetInt(beatScroller.gameObject.name, score);
                 PlayerPrefs.Save();
                 newHighScore.SetActive(true);
             }
         }
         else
         {
-            PlayerPrefs.SetInt(music.clip.name, score);
+            PlayerPrefs.SetInt(beatScroller.gameObject.name, score);
             PlayerPrefs.Save();
             newHighScore.SetActive(true);
         }
