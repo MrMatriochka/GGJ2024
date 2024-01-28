@@ -19,15 +19,15 @@ public class CardFunctions : MonoBehaviour
     GameManager gameManager;
     private void Awake()
     {
-        if (instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //{
+            //DontDestroyOnLoad(gameObject);
             instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
     private void Start()
     {
