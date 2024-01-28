@@ -85,10 +85,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(!music.isPlaying && startPlaying && !gameOver)
-        {
-            EndStats();
-        }
+        
     }
     void Start()
     {
@@ -109,7 +106,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (timeToNextCard <= 0)
+        if (timeToNextCard <= 0 && !gameOver)
         {
             GetCard();
             timeToNextCard = timeBetweenCard;
@@ -122,6 +119,11 @@ public class GameManager : MonoBehaviour
         if (toxicity>=100)
         {
             GameOver();
+        }
+
+        if (!music.isPlaying && startPlaying && !gameOver)
+        {
+            EndStats();
         }
 
         //tomate dropRate

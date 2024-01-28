@@ -8,7 +8,7 @@ public class PetPhysics : MonoBehaviour
     public GameObject[] decor;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) )
         {
             Prout();
         }

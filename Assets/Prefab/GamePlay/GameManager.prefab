@@ -85,18 +85,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   cardInventory: []
-  timeBetweenCard: 2
+  timeBetweenCard: 30
   cdReducePerPefectHit: 1
   toxicitySlider: {fileID: 0}
   toxicityVignette: {fileID: 0}
+  toxicityMist: {fileID: 0}
   toxicity: 0
-  toxicityGainPerMiss: 2
-  toxicityGainPerMissClick: 1
+  toxicityGainPerMiss: 0.5
+  toxicityGainPerMissClick: 0.1
   shield: 0
   missShield: 0
+  gameOverMenu: {fileID: 0}
   endScoreText: {fileID: 0}
   precisionText: {fileID: 0}
   newHighScore: {fileID: 0}
+  endMenu: {fileID: 0}
 --- !u!114 &8609805439368422454
 MonoBehaviour:
   m_ObjectHideFlags: 0
