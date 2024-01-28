@@ -5,8 +5,7 @@ using UnityEngine;
 public class PetPhysics : MonoBehaviour
 {
     public float power;
-    public float upwardForce;
-    public float radius;
+    public GameObject[] decor;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -17,14 +16,11 @@ public class PetPhysics : MonoBehaviour
 
     void Prout()
     {
-            Vector3 explosionPos = transform.position;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-            foreach (Collider hit in colliders)
-            {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
-
-                if (rb != null && rb.tag == "Decor")
-                    rb.AddExplosionForce(power, explosionPos, radius, upwardForce);
-            }
+        foreach (GameObject obj in decor)
+        {
+            Vector3 direction = obj.transform.position-transform.position;
+            direction = direction.normalized;
+            obj.GetComponent<Rigidbody>().AddForce(direction*power, ForceMode.Impulse);
+        }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomate
   m_EditorClassIdentifier: 
   nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
-  iconDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  iconDecalMat: {fileID: 2100000, guid: 048cfc80ec637924bb0013e619eab6cb, type: 2}
   description: oui oui
   dropRate: 0
   function: 0

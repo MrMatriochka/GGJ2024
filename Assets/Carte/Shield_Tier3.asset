@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield_Tier3
   m_EditorClassIdentifier: 
   nameDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
-  iconDecalMat: {fileID: 2100000, guid: 50c9510d1996f47418480a44dd3b5da0, type: 2}
+  iconDecalMat: {fileID: 2100000, guid: ce830edac94f8a1499236ae254c0ba95, type: 2}
   description: oui oui
   dropRate: 0.1
   function: 2
