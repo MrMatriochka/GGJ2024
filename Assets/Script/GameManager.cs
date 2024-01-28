@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     [Header("Toxicity")]
     public Slider toxicitySlider;
     public Volume toxicityVignette;
+    public Image toxicityMist;
     Vignette vg;
     [HideInInspector] public float toxicity;
     public float toxicityGainPerMiss;
@@ -99,6 +100,9 @@ public class GameManager : MonoBehaviour
         timeToNextCard = timeBetweenCard;
         toxicityVignette.sharedProfile.TryGet(out vg);
         UpdateUnlockedCard();
+
+        vg.intensity.value = toxicity / 100;
+        toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
     }
 
     // Update is called once per frame
@@ -304,6 +308,7 @@ public class GameManager : MonoBehaviour
             toxicity += toxicityGainPerMiss;
             toxicitySlider.value = toxicity;
             vg.intensity.value = toxicity / 100;
+            toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
             multiplierTracker = 0;
             currentMultiplier = 1;
             multiplierText.text = "X " + currentMultiplier;
@@ -322,6 +327,7 @@ public class GameManager : MonoBehaviour
             toxicity += toxicityGainPerMissClick;
             toxicitySlider.value = toxicity;
             vg.intensity.value = toxicity / 100;
+            toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
             multiplierTracker = 0;
             currentMultiplier = 1;
             multiplierText.text = "X " + currentMultiplier;
