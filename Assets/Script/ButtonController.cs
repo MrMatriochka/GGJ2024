@@ -21,7 +21,7 @@ public class ButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(keyToPress))
+        if (Input.GetKeyDown(keyToPress) || Input.GetKeyDown(KeyCode.Space))
         {
             image.enabled = true;
             VFX.Play();
@@ -33,7 +33,7 @@ public class ButtonController : MonoBehaviour
                 GameManager.instance.NoteMissClick();
             }
         }
-        if (Input.GetKeyUp(keyToPress))
+        if (Input.GetKeyUp(keyToPress) || Input.GetKeyUp(KeyCode.Space))
         {
             image.enabled = false;
             spotLight.SetActive(false);

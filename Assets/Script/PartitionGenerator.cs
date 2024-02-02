@@ -11,6 +11,7 @@ public class PartitionGenerator : MonoBehaviour
     public KeyCode[] keyToLongPress;
     public GameObject notePrefab;
     public GameObject longNotePrefab;
+    public GameObject barreNotePrefab;
     public GameObject noteHolder;
     public AudioSource audioSource;
 
@@ -62,6 +63,12 @@ public class PartitionGenerator : MonoBehaviour
                 note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.transform.parent = finalTracks[i].transform;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject note = Instantiate(barreNotePrefab, tracks[0].parent.position, Quaternion.identity);
+            note.transform.parent = finalTracks[4].transform;
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
