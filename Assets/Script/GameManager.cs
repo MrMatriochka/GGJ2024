@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     public Slider toxicitySlider;
     public Volume toxicityVignette;
     public Image toxicityMist;
-    Vignette vg;
+    [HideInInspector] public Vignette vg;
     [HideInInspector] public float toxicity;
     public float toxicityGainPerMiss;
     public float toxicityGainPerMissClick;
@@ -145,6 +145,27 @@ public class GameManager : MonoBehaviour
             allCard[16].dropRate = 0.1f;
         }
         else { allCard[16].dropRate = 0; }
+
+        //bonus multiply display
+        if (bonusMultiplier > 1)
+        {
+            multiplierText.text = "x " + (currentMultiplier*bonusMultiplier);
+        }
+
+        //card with mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit raycastHit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out raycastHit, 10000))
+            {
+                if (raycastHit.collider.CompareTag("Card"))
+                {
+                    int id = raycastHit.transform.parent.GetComponent<CardSlot>().id;
+                    UseCard(id);
+                }
+            }
+        }
     }
 
     public GameObject gameOverMenu;
@@ -236,7 +257,10 @@ public class GameManager : MonoBehaviour
         {
             Card card = cardInventory[slotId];
             CardFunctions.instance.CallFunction(card.function, card.timer,card.integer);
-            cardInventory[slotId] = null;
+            if(card.function != CardFunctions.Function.Reroll)
+            {
+                cardInventory[slotId] = null;
+            }
             UpdateInventorySlot(slotId);
         }
         
@@ -323,7 +347,7 @@ public class GameManager : MonoBehaviour
             toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
             multiplierTracker = 0;
             currentMultiplier = 1;
-            multiplierText.text = "X " + currentMultiplier;
+            multiplierText.text = "x " + currentMultiplier;
             multiplierSlider.value = multiplierTracker;
             multiplierSlider.maxValue = multiplierThresholds[currentMultiplier - 1];
         } 

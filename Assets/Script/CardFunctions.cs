@@ -46,6 +46,7 @@ public class CardFunctions : MonoBehaviour
                 MissShield(integer);
                 break;
             case Function.Reroll:
+                Reroll();
                 break; 
             case Function.ReduceToxicity:
                 ReduceToxicity(integer);
@@ -89,6 +90,10 @@ public class CardFunctions : MonoBehaviour
         {
             gameManager.toxicity = 0;
         }
+
+        gameManager.toxicitySlider.value = gameManager.toxicity;
+        gameManager.vg.intensity.value = gameManager.toxicity / 100;
+        gameManager.toxicityMist.material.SetFloat("_Opacity", gameManager.vg.intensity.value);
     }
     void MissShield(int miss)
     {
@@ -100,8 +105,9 @@ public class CardFunctions : MonoBehaviour
         {
             if (gameManager.cardInventory[i] != null)
             {
-                gameManager.cardInventory[i] = gameManager.allCard[Random.Range(0, gameManager.allCard.Length - 1)];
-                gameManager.UpdateInventorySlot(i);
+                gameManager.cardInventory[i] = null;
+                Destroy(gameManager.inventorySlot[i].transform.GetChild(0).gameObject);
+                gameManager.GetCard();
             }
         }
     }
