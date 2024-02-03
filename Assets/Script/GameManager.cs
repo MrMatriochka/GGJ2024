@@ -51,6 +51,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool shield;
     [HideInInspector] public int missShield;
 
+    [Header("Stats")]
+    public TMP_Text endScoreText;
+    public TMP_Text precisionText;
+    public GameObject newHighScore;
+    float totalNoteNb;
+    float hitNoteNb;
+    public GameObject endMenu;
+    bool finish;
+
     private void Awake()
     {
         //if (instance == null)
@@ -101,6 +110,9 @@ public class GameManager : MonoBehaviour
         toxicity = 0;
         vg.intensity.value = toxicity / 100;
         toxicityMist.material.SetFloat("_Opacity", vg.intensity.value);
+
+        totalNoteNb=0;
+        hitNoteNb=0;
     }
 
     // Update is called once per frame
@@ -122,8 +134,9 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        if (!music.isPlaying && startPlaying && !gameOver)
+        if (!music.isPlaying && startPlaying && !gameOver && !finish)
         {
+            finish = true;
             EndStats();
         }
 
@@ -354,6 +367,7 @@ public class GameManager : MonoBehaviour
     }
     public void NoteMissClick()
     {
+        totalNoteNb++;
         hitText.text = "Miss";
         hitText.color = Color.red;
         if (missShield > 0)
@@ -374,13 +388,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Header("Stats")]
-    public TMP_Text endScoreText;
-    public TMP_Text precisionText;
-    public GameObject newHighScore;
-    int totalNoteNb;
-    int hitNoteNb;
-    public GameObject endMenu;
+    
     void EndStats()
     {
         endMenu.SetActive(true);
@@ -401,6 +409,6 @@ public class GameManager : MonoBehaviour
         }
         endScoreText.text = "Score: " + score.ToString();
         int precision = Mathf.RoundToInt((hitNoteNb / totalNoteNb) * 100);
-        precisionText.text = "Accuracy: " + precision.ToString();
+        precisionText.text = precision.ToString();
     }
 }

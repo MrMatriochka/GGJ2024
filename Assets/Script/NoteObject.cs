@@ -19,11 +19,11 @@ public class NoteObject : MonoBehaviour
         {
             if (canBePressed)
             {
-                if (Mathf.Abs(transform.localPosition.y-1.6f) > 0.5)
+                if (Mathf.Abs(transform.position.y-1.6f) > 0.5)
                 {
                     GameManager.instance.NormalHit();
                 }
-                else if (Mathf.Abs(transform.localPosition.y -1.6f) > 0.2)
+                else if (Mathf.Abs(transform.position.y -1.6f) > 0.2)
                 {
                     GameManager.instance.GoodHit();
                 }
@@ -64,9 +64,11 @@ public class NoteObject : MonoBehaviour
     IEnumerator Dissolve()
     {
         float t = 0;
+        float tempo = GameManager.instance.beatScroller.beatTempo;
         while (t<1f)
         {
             t += Time.deltaTime * dissolveSpeed;
+            transform.localPosition += new Vector3(0, tempo * Time.deltaTime, 0);
             GetComponent<Renderer>().material.SetFloat("_Dissolve", t);
             yield return null;
         }
