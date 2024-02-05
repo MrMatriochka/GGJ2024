@@ -38,7 +38,7 @@ public class PartitionGenerator : MonoBehaviour
         }
         else
         {
-            noteHolder.transform.position += new Vector3(0, beatTempo * Time.deltaTime, 0);
+            noteHolder.transform.localPosition += new Vector3(0, beatTempo * Time.deltaTime, 0);
         }
 
         for (int i = 0; i < tracks.Length; i++)
@@ -67,7 +67,7 @@ public class PartitionGenerator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject note = Instantiate(barreNotePrefab, tracks[0].parent.position, Quaternion.identity);
+            GameObject note = Instantiate(barreNotePrefab, tracks[0].parent.position, barreNotePrefab.transform.rotation);
             note.transform.parent = finalTracks[4].transform;
         }
 
