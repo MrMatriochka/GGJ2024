@@ -8,7 +8,6 @@ public class PartitionGenerator : MonoBehaviour
     public Transform[] tracks;
     public Transform[] finalTracks;
     public KeyCode[] keyToPress;
-    public KeyCode[] keyToLongPress;
     public GameObject notePrefab;
     public GameObject longNotePrefab;
     public GameObject barreNotePrefab;
@@ -20,12 +19,17 @@ public class PartitionGenerator : MonoBehaviour
 
     public string prefabPath;
     public string prefabName;
+    
+    int id = 0;
+
+    float[] buffer = new float[5];
+    public float timeForLongNote;
+    Transform[] startTransformBuffer = new Transform[5];
+    GameObject[] startNoteBuffer = new GameObject[5];
     void Start()
     {
         beatTempo = beatTempo / 60f;
     }
-    int id = 0;
-    // Update is called once per frame
     void Update()
     {
         if (!hasStarted)
@@ -50,18 +54,32 @@ public class PartitionGenerator : MonoBehaviour
                 note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
                 note.name = id.ToString();
                 id++;
+                startTransformBuffer[i] = note.transform;
+                startNoteBuffer[i] = note;
             }
-            if (Input.GetKeyDown(keyToLongPress[i]))
+            if (Input.GetKey(keyToPress[i]))
             {
-                GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
-                note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
-                note.transform.parent = finalTracks[i].transform;
+                buffer[i] += Time.deltaTime;
             }
-            if (Input.GetKeyUp(keyToLongPress[i]))
+            if (Input.GetKeyUp(keyToPress[i]))
             {
-                GameObject note = Instantiate(longNotePrefab, tracks[i].position, Quaternion.identity);
-                note.GetComponent<NoteObject>().keyToPress = keyToPress[i];
-                note.transform.parent = finalTracks[i].transform;
+                if(buffer[i] >= timeForLongNote)
+                {
+                    Vector3 spawnPoint = new Vector3(
+                        startTransformBuffer[i].position.x + (tracks[i].position.x - startTransformBuffer[i].position.x)/2,
+                        startTransformBuffer[i].position.y + (tracks[i].position.y - startTransformBuffer[i].position.y) / 2,
+                        startTransformBuffer[i].position.z + (tracks[i].position.z - startTransformBuffer[i].position.z) / 2
+                        );
+                    float noteLength = Vector3.Distance(tracks[i].position, startTransformBuffer[i].position);
+
+                    GameObject note = Instantiate(longNotePrefab, finalTracks[i].transform);
+                    note.transform.position = spawnPoint;
+                    note.GetComponent<LongNoteObject>().keyToPress = keyToPress[i];
+                    note.transform.localScale = new Vector3(noteLength, note.transform.localScale.y, note.transform.localScale.z);
+                    
+                    Destroy(startNoteBuffer[i]);
+                }
+                buffer[i] = 0;
             }
         }
 
