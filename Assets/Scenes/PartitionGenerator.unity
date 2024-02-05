@@ -812,7 +812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247447703}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.39665216, y: -0, z: -0, w: 0.917969}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 3.53, z: 3.6}
   m_LocalScale: {x: 2.4408, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -823,7 +823,7 @@ Transform:
   - {fileID: 2123097369}
   - {fileID: 1804418030}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &348255351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,10 +1865,9 @@ MonoBehaviour:
   - {fileID: 1323317304}
   - {fileID: 1147344786}
   keyToPress: 71000000770000006500000072000000
-  keyToLongPress: 61000000730000006400000066000000
   notePrefab: {fileID: 3118295320729238340, guid: 267475a2d50d7084a8d28c86d1484e32,
     type: 3}
-  longNotePrefab: {fileID: 3118295320729238340, guid: f18ad83b40e69be45bfbc0ebd40d078b,
+  longNotePrefab: {fileID: 3118295320729238340, guid: 092d0b9de09126f4ba8ed413050aa18a,
     type: 3}
   barreNotePrefab: {fileID: 3118295320729238340, guid: 126cd67e6fb9f4543a807409e76cb40c,
     type: 3}
@@ -1877,6 +1876,7 @@ MonoBehaviour:
   beatTempo: 120
   prefabPath: Assets/Prefab/Partition
   prefabName: test
+  timeForLongNote: 1
 --- !u!1 &1208663064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,7 +2559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804418029}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.39665216, y: 0, z: -0, w: 0.917969}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.40970173, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
